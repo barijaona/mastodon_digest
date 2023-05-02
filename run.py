@@ -68,6 +68,7 @@ def run(
     timeline: str,
     output_dir: Path,
     theme: str,
+    flipton: bool
 ) -> None:
 
     print(f"Building digest from the past {hours} hours...")
@@ -79,7 +80,7 @@ def run(
     )
 
     # 1. Fetch all the posts and boosts from our home timeline that we haven't interacted with
-    posts, boosts = fetch_posts_and_boosts(hours, mst, timeline)
+    posts, boosts = fetch_posts_and_boosts(hours, mst, timeline, flipton)
 
     # 2. Score them, and return those that meet our threshold
     threshold_posts = threshold.posts_meeting_criteria(posts, scorer)
@@ -195,6 +196,14 @@ if __name__ == "__main__":
         help="Named template theme with which to render the digest",
         required=False,
     )
+    arg_parser.add_argument(
+        "--flipton",
+        default=False,
+        action="store_true",
+        dest="flipton",
+        help="Use flipton for retrieving posts from their original instances. This will fetch more complete information about boosts, stars and replies.",
+        required=False,
+    )
 
     add_defaults_from_config(arg_parser, Path(arg_parser.parse_args().config))
     # Parse args once more with updated defaults
@@ -239,4 +248,5 @@ if __name__ == "__main__":
         timeline,
         output_dir,
         args.theme,
+        args.flipton
     )

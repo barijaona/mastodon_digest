@@ -87,7 +87,7 @@ usage: mastodon_digest [-h] [-f TIMELINE] [-n {1,2,3,4,5,6,7,8,9,10,11,12,13,14,
                        [-s {ExtendedSimple,ExtendedSimpleWeighted,Simple,SimpleWeighted}]
                        [--boost-scorer {ExtendedSimple,ExtendedSimpleWeighted,Simple,SimpleWeighted}]
                        [-t {lax,normal,strict}]
-                       [-o OUTPUT_DIR] [--theme {light,default}]
+                       [-o OUTPUT_DIR] [--theme {light,default}] [--flipton]
 
 options:
   -h, --help            show this help message and exit
@@ -113,6 +113,8 @@ options:
   -o OUTPUT_DIR         Output directory for the rendered digest (default: ./render/)
   --theme {light,default}
                         Named template theme with which to render the digest (default: default)
+  --flipton             Use flipton for retrieving posts from their original instances. This will fetch more complete information
+                        about boosts, stars and replies, but also cause more network load. (default: False)
 ```
 
 If you are running with Docker and make, you can pass flags as:
@@ -175,6 +177,12 @@ When developing themes, you can run the digest in development mode, which uses t
 ```sh
 make dev FLAGS="--theme my-theme"
 ```
+
+#### flipton
+
+When you intend to use flipton for Mastodon requests, be sure to fetch the corresponding submodule, e.g., by cloning the repo with option `--recurse-submodules`.
+When `run.py` is started with `--flipton`, the script attempts to retrieve posts and boosts from the home instance of the author. This also fetches boosts, stars
+and replies for the post, which the user's home instance (as given by `MASTODON_BASE_URL`) is not aware of.
 
 ## What's missing?
 
