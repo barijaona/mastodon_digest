@@ -1,7 +1,22 @@
 <style>
 
+    /* custom properties */
+    :root {
+        --background-color: #fafafa;
+        --text-color: #111;
+        --info-color: #333;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --background-color: #111111;
+            --text-color: #d7d7d8;
+            --info-color: #D3D3D3;
+        }
+    }
+
     body {
-        background-color: #292c36;
+        background-color: var(--background-color);
         font-family: "Arial", sans-serif;
     }
 
@@ -22,27 +37,27 @@
     }
 
     h1 {
-        color: white;
+        color: var(--text-color);
     }
 
     h2 {
-        color: white;
+        color: var(--text-color);
     }
 
     a.home-link {
-        color: white;
+        color: var(--text-color);
     }
 
     a.original-link {
-        color: white;
+        color: var(--text-color);
     }
 
     span.link-divider {
-        color: white;
+        color: var(--text-color);
     }
 
     .render-info {
-        color: #D3D3D3;
+        color: var(--info-color);
         max-width: 640px;
     }
 
