@@ -48,6 +48,7 @@ def format_base_url(mastodon_base_url: str) -> str:
 def run(
     hours: int,
     scorer: Scorer,
+    boost_scorer: Scorer,
     threshold: Threshold,
     mastodon_token: str,
     mastodon_base_url: str,
@@ -69,14 +70,14 @@ def run(
 
     # 2. Score them, and return those that meet our threshold
     threshold_posts = threshold.posts_meeting_criteria(posts, scorer)
-    threshold_boosts = threshold.posts_meeting_criteria(boosts, scorer)
+    threshold_boosts = threshold.posts_meeting_criteria(boosts, boost_scorer)
 
     # 3. Sort posts and boosts by score, descending
     threshold_posts = sorted(
         threshold_posts, key=lambda post: post.get_score(scorer), reverse=True
     )
     threshold_boosts = sorted(
-        threshold_boosts, key=lambda post: post.get_score(scorer), reverse=True
+        threshold_boosts, key=lambda post: post.get_score(boost_scorer), reverse=True
     )
 
     # 4. Build the digest
@@ -95,6 +96,8 @@ def run(
                 "timeline_name": timeline,
                 "threshold": threshold.get_name(),
                 "scorer": scorer.get_name(),
+                "boost_scorer": boost_scorer.get_name(),
+
             },
             output_dir=output_dir,
             theme=theme,
@@ -137,6 +140,16 @@ if __name__ == "__main__":
         """,
     )
     arg_parser.add_argument(
+        "--boost-scorer",
+        choices=list(scorers.keys()),
+        dest="boost_scorer",
+        help="""Which scoring criteria to use specifically for boosts.
+            Argument form is identical to "-s" argument.
+            Defaults to the value that is used for "-s" argument.
+        """,
+        required=False,
+    )
+    arg_parser.add_argument(
         "-t",
         choices=list(thresholds.keys()),
         default="normal",
@@ -163,6 +176,11 @@ if __name__ == "__main__":
         required=False,
     )
     args = arg_parser.parse_args()
+
+    if args.boost_scorer:
+        boost_scorer = args.boost_scorer
+    else:
+        boost_scorer = args.scorer
 
     # Attempt to validate the output directory
     output_dir = Path(args.output_dir)
@@ -191,6 +209,7 @@ if __name__ == "__main__":
     run(
         args.hours,
         scorers[args.scorer](),
+        scorers[boost_scorer](),
         get_threshold_from_name(args.threshold),
         mastodon_token,
         format_base_url(mastodon_base_url),
