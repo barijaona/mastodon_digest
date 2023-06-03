@@ -64,3 +64,4 @@ $(PYTHON_BIN):
 
 local: $(PYTHON_BIN)
 	$(PYTHON_BIN) run.py ${FLAGS}
+	$(PYTHON_BIN) -m webbrowser -t "file://$(PWD)/render/index.html"
