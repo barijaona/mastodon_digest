@@ -84,7 +84,9 @@ python run.py -h
 
 ```
 usage: mastodon_digest [-h] [-f TIMELINE] [-n {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24}]
-                       [-s {ExtendedSimple,ExtendedSimpleWeighted,Simple,SimpleWeighted}] [-t {lax,normal,strict}]
+                       [-s {ExtendedSimple,ExtendedSimpleWeighted,Simple,SimpleWeighted}]
+                       [--boost-scorer {ExtendedSimple,ExtendedSimpleWeighted,Simple,SimpleWeighted}]
+                       [-t {lax,normal,strict}]
                        [-o OUTPUT_DIR] [--theme {light,default}]
 
 options:
@@ -98,6 +100,10 @@ options:
                         scorers include reply counts in the geometric mean. Weighted scorers multiply the score by an inverse
                         square root of the author's followers, to reduce the influence of large accounts. (default:
                         SimpleWeighted)
+  --boost-scorer {ExtendedSimple,ExtendedSimpleWeighted,Simple,SimpleWeighted}
+                        Which scoring criteria to use specifically for boosts.
+                        Argument form is identical to "-s" argument.
+                        Defaults to the value that is used for "-s" argument. (default: None)
   -t {lax,normal,strict}
                         Which post threshold criteria to use. lax = 90th percentile, normal = 95th percentile, strict = 98th
                         percentile (default: normal)
@@ -125,6 +131,7 @@ make run FLAGS="-n 8 -s ExtendedSimpleWeighted -t lax"
     - `SimpleWeighted` : The same as `Simple`, but every score is multiplied by the inverse of the square root of the author's follower count. Therefore, authors with very large audiences will need to meet higher boost and favorite numbers. **This is the default scorer**.
     - `ExtendedSimple` : Each post is scored with a modified [geometric mean](https://en.wikipedia.org/wiki/Geometric_mean) of its number of boosts, its number of favorites, and its number of replies.
     - `ExtendedSimpleWeighted` : The same as `ExtendedSimple`, but every score is multiplied by the inverse of the square root of the author's follower count. Therefore, authors with very large audiences will need to meet higher boost, favorite, and reply numbers.
+* `--boost-scorer` : Scoring method to use specifically for boosts. **Default is to use the same scoring method for subscribed posts and boosts.**
 * `-t` : Threshold for scores to include. **normal** is the default
     - `lax` : Posts must achieve a score within the 90th percentile.
     - `normal` : Posts must achieve a score within the 95th percentile. **This is the default threshold**.
@@ -150,6 +157,7 @@ The available view variables are:
 * `timeline_name` : The timeline used to generated the digest (e.g. home, local, hashtag:introductions)
 * `threshold` : The threshold for scores included
 * `scorer` : The scoring method used
+* `boost_scorer` : The scoring method used specifically for boosts
 
 Each post and boost is a `ScoredPost` object:
 
@@ -173,8 +181,10 @@ I'm still thinking about the best structure / process / whatever to incorporate 
 
 I've tested this on my Intel and M1 macOS machines. Ubuntu users say it works. I believe it'll work on other architectures and operating systems, but I haven't tried. The availability of a GUI web browser is important. [Do you know how to make it work on Windows?](https://github.com/hodgesmr/mastodon_digest/issues/13)
 
-## A Matt Hodges project
+## A project initiated by Matt Hodges
 
-This project is maintained by [@MattHodges](https://mastodon.social/@MattHodges).
+This project was created by [@MattHodges](https://mastodon.social/@MattHodges).
+
+Fork by Barijaona Ramaholimihaso [@barijaona](https://mastodon.mg/@barijaona).
 
 _Please use it for good, not evil._
