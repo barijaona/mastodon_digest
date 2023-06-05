@@ -111,6 +111,7 @@ def run(
                 "threshold": threshold.get_name(),
                 "scorer": scorer.get_name(),
                 "boost_scorer": boost_scorer.get_name(),
+                "flipton" : flipton,
 
             },
             output_dir=output_dir,
