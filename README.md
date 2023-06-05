@@ -59,7 +59,7 @@ make local FLAGS="-n 8 -s ExtendedSimpleWeighted -t lax"
 
 #### Manually
 
-Althernatively if you have a different Python 3.9 environment, you can:
+Alternatively if you have a different Python 3.9 environment, you can:
 
 ```sh
 pip install -r requirements.txt
