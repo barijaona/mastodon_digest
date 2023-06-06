@@ -140,7 +140,7 @@ if __name__ == "__main__":
         """,
     )
     arg_parser.add_argument(
-        "--boost-scorer",
+        "-b", "--boost_scorer", "--boost-scorer",
         choices=list(scorers.keys()),
         dest="boost_scorer",
         help="""Which scoring criteria to use specifically for boosts.

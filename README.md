@@ -100,7 +100,7 @@ options:
                         scorers include reply counts in the geometric mean. Weighted scorers multiply the score by an inverse
                         square root of the author's followers, to reduce the influence of large accounts. (default:
                         SimpleWeighted)
-  --boost-scorer {ExtendedSimple,ExtendedSimpleWeighted,Simple,SimpleWeighted}
+  -b, --boost_scorer, --boost-scorer {ExtendedSimple,ExtendedSimpleWeighted,Simple,SimpleWeighted}
                         Which scoring criteria to use specifically for boosts.
                         Argument form is identical to "-s" argument.
                         Defaults to the value that is used for "-s" argument. (default: None)
@@ -131,7 +131,7 @@ make run FLAGS="-n 8 -s ExtendedSimpleWeighted -t lax"
     - `SimpleWeighted` : The same as `Simple`, but every score is multiplied by the inverse of the square root of the author's follower count. Therefore, authors with very large audiences will need to meet higher boost and favorite numbers. **This is the default scorer**.
     - `ExtendedSimple` : Each post is scored with a modified [geometric mean](https://en.wikipedia.org/wiki/Geometric_mean) of its number of boosts, its number of favorites, and its number of replies.
     - `ExtendedSimpleWeighted` : The same as `ExtendedSimple`, but every score is multiplied by the inverse of the square root of the author's follower count. Therefore, authors with very large audiences will need to meet higher boost, favorite, and reply numbers.
-* `--boost-scorer` : Scoring method to use specifically for boosts. **Default is to use the same scoring method for subscribed posts and boosts.**
+* `-b` : Scoring method to use specifically for boosts. **Default is to use the same scoring method for subscribed posts and boosts.**
 * `-t` : Threshold for scores to include. **normal** is the default
     - `lax` : Posts must achieve a score within the 90th percentile.
     - `normal` : Posts must achieve a score within the 95th percentile. **This is the default threshold**.
