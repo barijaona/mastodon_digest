@@ -91,6 +91,9 @@ usage: mastodon_digest [-h] [-f TIMELINE] [-n {1,2,3,4,5,6,7,8,9,10,11,12,13,14,
 
 options:
   -h, --help            show this help message and exit
+  -c, --config CONFIG_FILE
+                        Defines the configuration file for a user configured
+                        scorer. (default: ./cfg.yaml)
   -f TIMELINE           The timeline to summarize: Expects 'home', 'local' or 'federated', or 'list:id', 'hashtag:tag' (default:
                         home)
   -n {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24}
@@ -119,6 +122,8 @@ make run FLAGS="-n 8 -s ExtendedSimpleWeighted -t lax"
 ```
 
 #### Algorithm Options
+ * `-c` : Configuration file. Refer to `cfg.yaml.example` as template.
+   Parameters can be one of the available per command line interface, that is: `hours` (<-`n`), `timeline` (<-`f`) `scorer` (<-`-s`), `boost_scorer` (<-`-s`), `threshold` (<-`-t`), `output_dir` (<-`-o`), `theme` (cli takes precedence).
  * `-f` : Timeline feed to source from. **home** is the default.
     - `home` : Your home timeline.
     - `local` : The local timeline for your instance; all the posts from users in an instance. This is more useful on small/medium-sized instances. Consider using a much smaller value for `-n` to limit the number of posts analysed.

@@ -1,0 +1,14 @@
+# corresponds to command line argument '-f'
+timeline: "home"
+# corresponds to command line argument '-n'
+hours: 12
+# corresponds to command line argument '-s'
+scorer: "SimpleWeighted"
+# corresponds to command line argument '-b'
+scorer: "SimpleWeighted"
+# corresponds to command line argument '-t'
+threshold: "normal"
+# corresponds to command line argument '-o'
+output_dir: "./render/"
+# corresponds to command line argument '--theme'
+theme: "default"

@@ -4,6 +4,7 @@ import argparse
 import dotenv
 import os
 import sys
+import yaml
 from datetime import datetime
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -44,6 +45,18 @@ def list_themes() -> list[str]:
 def format_base_url(mastodon_base_url: str) -> str:
     return mastodon_base_url.strip().rstrip("/")
 
+
+def add_defaults_from_config(arg_parser : ArgumentParser, config_file : Path) -> None:
+    # Override defaults of parser by pars given in config file
+    if config_file.exists() and config_file.is_file():
+        with open(config_file, "r") as f:
+            cfg_pars = yaml.safe_load(f)
+        print("Loading config file '%s'"%config_file)
+        arg_parser.set_defaults(**cfg_pars)
+
+    else:
+        if str(config_file) != arg_parser.get_default("config"):
+            print("Couldn't load config file '%s'."%config_file)
 
 def run(
     hours: int,
@@ -113,6 +126,13 @@ if __name__ == "__main__":
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     arg_parser.add_argument(
+        "-c", "--config",
+        default="./cfg.yaml",
+        dest="config",
+        help="Defines a configuration file.",
+        required=False,
+    )
+    arg_parser.add_argument(
         "-f",  # for "feed" since t-for-timeline is taken
         default="home",
         dest="timeline",
@@ -175,6 +195,9 @@ if __name__ == "__main__":
         help="Named template theme with which to render the digest",
         required=False,
     )
+
+    add_defaults_from_config(arg_parser, Path(arg_parser.parse_args().config))
+    # Parse args once more with updated defaults
     args = arg_parser.parse_args()
 
     if args.boost_scorer:
