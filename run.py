@@ -138,7 +138,7 @@ if __name__ == "__main__":
         "-f",  # for "feed" since t-for-timeline is taken
         default="home",
         dest="timeline",
-        help="The timeline to summarize: Expects 'home', 'local' or 'federated', or 'list:id', 'hashtag:tag'",
+        help="The timeline to summarize: Expects 'home', 'local' or 'federated', or 'list:id', 'hashtag:tag'.",
         required=False,
     )
     arg_parser.add_argument(
@@ -146,7 +146,7 @@ if __name__ == "__main__":
         choices=range(1, 25),
         default=12,
         dest="hours",
-        help="The number of hours to include in the Mastodon Digest",
+        help="The number of hours to include in the Mastodon Digest.",
         type=int,
     )
     arg_parser.add_argument(
@@ -179,14 +179,14 @@ if __name__ == "__main__":
         help="""Which post threshold criteria to use.
             lax = 90th percentile,
             normal = 95th percentile,
-            strict = 98th percentile
+            strict = 98th percentile.
         """,
     )
     arg_parser.add_argument(
         "-o",
         default="./render/",
         dest="output_dir",
-        help="Output directory for the rendered digest",
+        help="Output directory for the rendered digest.",
         required=False,
     )
     arg_parser.add_argument(
@@ -194,7 +194,7 @@ if __name__ == "__main__":
         choices=list_themes(),
         default="default",
         dest="theme",
-        help="Named template theme with which to render the digest",
+        help="Named template theme with which to render the digest.",
         required=False,
     )
     arg_parser.add_argument(
