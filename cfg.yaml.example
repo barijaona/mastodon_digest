@@ -12,3 +12,5 @@ threshold: "normal"
 output_dir: "./render/"
 # corresponds to command line argument '--theme'
 theme: "default"
+# corresponds to command line argument '--flipton'
+flipton: "False"
