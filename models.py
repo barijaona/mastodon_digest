@@ -20,3 +20,20 @@ class ScoredPost:
     def get_score(self, scorer: Scorer) -> float:
         return scorer.score(self)
 
+    @property
+    def account(self) -> dict:
+        return self.info.account
+
+    @property
+    def content(self) -> str:
+        return self.info.content
+
+    @property
+    def media(self) -> str:
+        medias = []
+        for media in self.info.media_attachments:
+            if media.type == 'image':
+                medias.append(f'<img src={media.url}></img>')
+            elif media.type == 'gifv':
+                medias.append(f'<video src={media.url} autoplay="true" loop="true"></video>')
+        return '\n'.join(medias)
