@@ -6,6 +6,7 @@
         --text-color: #111;
         --info-color: #333;
         --link: #5d4f84;
+        --special-links: #e9e9f5;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -14,6 +15,7 @@
             --text-color: #d7d7d8;
             --info-color: #D3D3D3;
             --link: #9da2f0;
+            --special-links: #1b1f3d;
         }
     }
 
@@ -81,6 +83,11 @@
 
     a:hover, a:active {
         text-decoration: underline;
+    }
+
+    a.hashtag, a.mention {
+        opacity: .8;
+        background-color: var(--special-links);
     }
 
 </style>
