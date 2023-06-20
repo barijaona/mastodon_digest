@@ -36,4 +36,8 @@ class ScoredPost:
                 medias.append(f'<img src={media.url}></img>')
             elif media.type == 'gifv':
                 medias.append(f'<video src={media.url} autoplay="true" loop="true"></video>')
+            elif media.type == 'video':
+                medias.append(f'<video src={media.url} controls></video>')
+            elif media.type == 'audio':
+                medias.append(f'<audio src={media.url} controls></audio>')
         return '\n'.join(medias)
