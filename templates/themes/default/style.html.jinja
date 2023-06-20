@@ -7,6 +7,8 @@
         --info-color: #333;
         --link: #5d4f84;
         --special-links: #e9e9f5;
+        --post-decoration: #888;
+        --button-background: #e7eaec;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -16,6 +18,8 @@
             --info-color: #D3D3D3;
             --link: #9da2f0;
             --special-links: #1b1f3d;
+            --post-decoration: #3e475e;
+            --button-background: #3e475e;
         }
     }
 
@@ -60,6 +64,12 @@
         margin-right: 5px;
     }
 
+    .post {
+        border: 1px solid var(--post-decoration);
+        border-radius: 10px;
+        padding: 1em;
+    }
+
     .post_header {
         display: flex;
         justify-content: space-between;
@@ -68,12 +78,17 @@
     .post_footer {
         display: flex;
         justify-content: space-between;
+        border-top: 2px solid var(--post-decoration);
+        font-size: .8em;
+        padding-top: .7em;
+        opacity: .7;
     }
 
     .avatar {
         max-width: 4em;
         min-width: 4em;
         height: 4em;
+        margin-inline-end: .5em;
     }
 
     .avatar img {
@@ -88,6 +103,13 @@
 
     .displayname {
         display: block;
+        font-size: 1.1em;
+        opacity: .8;
+    }
+
+    .username {
+        font-size: .8em;
+        opacity: .8;
     }
 
     .medias img, .medias video {
@@ -107,6 +129,14 @@
     a.hashtag, a.mention {
         opacity: .8;
         background-color: var(--special-links);
+    }
+
+    .links a {
+        background: var(--button-background);
+        font-size: .8em;
+        padding: 2px 8px;
+        border-radius: 5px;
+        opacity: .8;
     }
 
 </style>
