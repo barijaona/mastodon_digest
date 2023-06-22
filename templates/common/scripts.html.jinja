@@ -1,1 +1,9 @@
-<script src="https://mastodon.social/embed.js" async="async"></script>
+<script>
+const options = { dateStyle: 'medium', timeStyle: 'medium' };
+document.querySelectorAll('.date').
+  forEach(d => {
+    const date = new Date(d.dataset.date).
+      toLocaleString('default', options)
+    d.textContent = date
+  })
+</script>
