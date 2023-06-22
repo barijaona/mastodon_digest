@@ -1,6 +1,6 @@
 # Mastodon Digest
 
-This is a Python project that generates a digest of popular Mastodon posts from one of your timelines.
+This is a Python project that generates a digest of popular posts from one of your Mastodon timelines.
 
 The digest is generated locally. The digests present two lists: posts from users you follow, and boosts from your followers. Digests are automatically opened locally in your web browser.
 
