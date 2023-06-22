@@ -8,7 +8,7 @@ Each list is constructed by respecting your server-side content filters and iden
 
 The digest will not contain posts from users who include `#nobot` or `#noindex` in their bio.
 
-![Mastodon Digest](https://i.imgur.com/ZRE9BKc.png)
+[![Screenshot.png](https://i.postimg.cc/VLZCJscN/Screenshot.png)](https://postimg.cc/crYHjSCq)
 
 ## Run
 
