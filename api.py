@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from mastodon import Mastodon
 
 # Toggle debugging output
-VERB = True
+VERB = False
 
 def get_full_account_name(acct : str, default_host : str) -> str:
     """
