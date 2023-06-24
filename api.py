@@ -36,7 +36,6 @@ def getOriginalPost(post):
     mst = MastodonInstanceSwitcher()
     try:
         original_post = mst.status(host=home_instance, id=post_id)
-        original_post['acct'] = post['acct']
     except FliptonError:
         original_post = None
     return original_post
