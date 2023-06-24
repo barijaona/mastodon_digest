@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from mastodon import Mastodon
 
 # Toggle debugging output
-VERB = False
+VERB = True
 
 def get_full_account_name(acct : str, default_host : str) -> str:
     """
@@ -41,7 +41,7 @@ def getOriginalPost(post):
     return original_post
 
 
-def update_posts_with_flipton(posts, boosts, timeout_secs = 30):
+def update_posts_with_flipton(posts, boosts, timeout_secs = 120):
     """
     Fetch in parallel the original posts corresponding the given posts
     and boosts, which were obtained from the user's home instance.
