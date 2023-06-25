@@ -5,6 +5,7 @@ import dotenv
 import os
 import sys
 import yaml
+import distutils.util
 from datetime import datetime
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -199,8 +200,8 @@ if __name__ == "__main__":
     )
     arg_parser.add_argument(
         "--flipton",
+        type=distutils.util.strtobool,
         default=False,
-        action="store_true",
         dest="flipton",
         help="Use flipton for retrieving posts from their original instances. This will fetch more complete information about boosts, stars and replies.",
         required=False,

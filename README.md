@@ -94,7 +94,7 @@ usage: mastodon_digest [-h] [-c CONFIG] [-f TIMELINE]
                        [-s {ExtendedSimple,ExtendedSimpleWeighted,Simple,SimpleWeighted}]
                        [-b {ExtendedSimple,ExtendedSimpleWeighted,Simple,SimpleWeighted}]
                        [-t {lax,normal,strict}]
-                       [-o OUTPUT_DIR] [--theme {light,default}] [--flipton]
+                       [-o OUTPUT_DIR] [--theme {light,default}] [--flipton {True,False}]
 
 options:
   -h, --help            show this help message and exit
@@ -119,7 +119,8 @@ options:
   -o OUTPUT_DIR         Output directory for the rendered digest. (default: ./render/)
   --theme {default, light}
                         Named template theme with which to render the digest (default: default)
-  --flipton             Use flipton for retrieving posts from their original instances. This will fetch more complete information
+  --flipton {True,False}
+                        Use flipton for retrieving posts from their original instances. This will fetch more complete information
                         about boosts, stars and replies. (default: False)
 ```
 
