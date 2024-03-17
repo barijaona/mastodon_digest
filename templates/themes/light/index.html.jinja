@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mastodon Digest</title>
     {% include "style.html.jinja" %}
 </head>
@@ -10,23 +11,23 @@
         <h1>Mastodon Digest</h1>
         {% include "render-info.html.jinja" %}
 
-        <section class="posts">
         {% if posts %}
+        <section class="posts">
             <h2>Here are some popular posts you may have missed:</h2>
             {% with posts=posts %}
                 {% include "posts.html.jinja" %}
             {% endwith %}
-        {% endif %}
         </section>
+        {% endif %}
 
-        <section class="posts">
         {% if boosts %}
+        <section class="posts">
             <h2>Here are some popular boosts you may have missed:</h2>
             {% with posts=boosts %}
                 {% include "posts.html.jinja" %}
             {% endwith %}
-        {% endif %}
         </section>
+        {% endif %}
     </div>
     {% include "scripts.html.jinja" %}
 </body>
