@@ -33,11 +33,11 @@ class ScoredPost:
         medias = []
         for media in self.info.media_attachments:
             if media.type == 'image':
-                medias.append(f'<img src={media.url}></img>')
+                medias.append(f'<img src="{media.url}">')
             elif media.type == 'gifv':
-                medias.append(f'<video src={media.url} autoplay="true" loop="true"></video>')
+                medias.append(f'<video src="{media.url}" autoplay="true" loop="true"></video>')
             elif media.type == 'video':
-                medias.append(f'<video src={media.url} controls></video>')
+                medias.append(f'<video src="{media.url}" controls></video>')
             elif media.type == 'audio':
-                medias.append(f'<audio src={media.url} controls></audio>')
+                medias.append(f'<audio src="{media.url}" controls></audio>')
         return '\n'.join(medias)
